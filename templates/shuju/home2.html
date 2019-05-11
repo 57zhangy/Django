@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <title>图书推荐系统主页</title>
+    <link rel="shortcut icon" href="../../static/images/shu.ico"/>
+    <link rel="bookmark" href="../../static/images/shu2.ico"/>
+    <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../static/layui-v2.4.5/layui/css/layui.css">
+    <link rel="stylesheet" href="../../static/css/style.css"/>
+</head>
+<script type="text/javascript" src="../../static/css/jquery-2.1.1.min.js"></script>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">
+            <h1><a href="/"><i class="fa fa-home"></i><span>{{ name }}</span></a></h1>
+        </div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left layui-hide-xs" id="layui-body-nav">
+            <li class="layui-nav-item side-switch" id="layui-body-ul-li">
+                <a href="javascript:"><i class="fa fa-dedent" id="layui-body-i"></i></a>
+            </li>
+            <li class="layui-nav-item"><a href="">精选书集</a></li>
+            <li class="layui-nav-item"><a href="">图书类型</a></li>
+            <li class="layui-nav-item"><a href="">图书推荐</a></li>
+            <span class="layui-nav-bar"></span>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs">
+                <form class="layui-form search-form" method="get" action="home3.html">
+                    <input type="search" class="search-field layui-input t-ip" placeholder="输入关键字搜索" value=""
+                           name="article.title" required="" lay-verify="required" autocomplete="off"/>
+                </form>
+            </li>
+            <li class="layui-nav-item side-btn layui-hide-sm layui-this"><a href="javascript:"><i
+                    class="fa fa-bars"></i></a></li>
+            <span class="layui-nav-bar"></span>
+        </ul>
+    </div>
+    <div class="side layui-bg-black" id="sidebar-nav">
+        <div class="side-logo">
+            <h1><a href="/" title=""><i class="fa fa-home"></i><span> {{ name }}</span></a></h1>
+        </div>
+        <div class="layui-side-scroll">
+            <div class="user-side">
+                <img src="../../static/images/touxiang.jpg" alt="logo" class="side-upic" height="80px" data-bd-imgshare-binded="1"/>
+                <div class="t-t">
+                    <p> 找到自己想做的事，并为之坚持！ </p>
+                </div>
+            </div>
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="nav">
+                <li class="layui-nav-item"><a href="home3.html"><i
+                        class="fa fa-circle-o fa-fw"></i><span>个人资料</span></a></li>
+                <li class="layui-nav-item"><a href="javascript:" class="nav-item-a"><i
+                        class="fa fa-connectdevelop fa-lemon-o"></i><span>设置</span><span class="layui-nav-more"></span></a>
+                    <ul id="scroll2" class="layui-nav-child">
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+                            <a href="" target="_blank" class="tool"
+                               title="修改密码" data="40"><i class="fa fa-angle-right"></i>修改密码</a>
+                        </li>
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+                            <a href="{% url 'logout' %}" target="_blank" class="tool"
+                               title="退出登录" data="40"><i class="fa fa-angle-right"></i>退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:" class="nav-item-a"><i
+                        class="fa fa-fw fa-lemon-o"></i><span>我的记录</span><span
+                        class="layui-nav-more"></span></a>
+                    <ul id="scroll2" class="layui-nav-child">
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+                            <a href="" target="_blank" class="tool"
+                               title="我的足迹" data="1"><i class="fa fa-angle-right"></i>我的足迹</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--循环输出独立页面-->
+                <li class="layui-nav-item"><a href="javascript:" class="nav-item-a"><i
+                        class="fa fa-houzz fa-smile-o"></i><span>推荐</span><span class="layui-nav-more"></span></a>
+                    <ul id="scroll2" class="layui-nav-child">
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-category"
+                            title="">
+                            <a href="" target="_blank" class="tool" data="33"><i
+                                    class="fa fa-angle-right"></i>推荐书籍</a>
+                        </li>
+                    </ul>
+                </li>
+                <span class="layui-nav-bar" style="top: 0; height: 0; opacity: 0;"></span>
+            </ul>
+        </div>
+    </div>
+    <!-- 主体 -->
+    <div class="layui-body" id="layui-body">     <!-- 默认面包屑 -->
+        <div class="layui-fluid map">
+            <span class="layui-breadcrumb" style="visibility: visible;"> </span>
+        </div>
+        <div class="layui-fluid main-wp">
+            <div class="layui-row main layui-col-space15">
+                <div class="layui-fluid main-wp">
+                    <div class="layui-row main layui-col-space15">
+
+                        <div class="content layui-col-md9 layui-col-lg10">
+                            <div style="width: 100%;margin-top: 2%;">
+                                <div class="layui-card "
+                                     style="float:left;display: flex;width: 19%;text-align: center;height: 85px;align-items: center;">
+                                    <img src="../../static/images/beijing.jpg" class="side-upic" style="float:left;"
+                                         height="80px" data-bd-imgshare-binded="1"/>
+                                    <table style="float:left;margin-left: 20px;">
+                                        <tr>
+                                            <td><strong><font size="5">492</font></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td> 精选书籍</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="layui-card "
+                                     style="float:left;margin-left: 15px;display: flex;width: 19%;text-align: center;height: 85px;align-items: center;">
+                                    <img src="../../static/images/timgf.jpg"  class="side-upic" style="float:left;"
+                                         height="80px" data-bd-imgshare-binded="1"/>
+                                    <table style="float:left;margin-left: 20px;">
+                                        <tr>
+                                            <td><strong><font size="5">1459</font></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td> 推荐书籍</td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div style="margin-top: 7%;">
+                                <div class="layui-card" style="width: 19%;float:left;">
+                                    <div class="layui-card-header" style="text-align: center;">
+                                        <font size="3"><strong>百度热搜</strong></font>
+                                        <a href="http://www.baidu.com" style="float:right ;">
+                                            >>更多
+                                        </a>
+                                    </div>
+                                    <div class="layui-card-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--首页右侧列表  start-->
+                        <div class="sidebar layui-col-md3 layui-col-lg2">
+                            <div class="dynamic">
+                                <h3 class="title-sidebar"><i class="fa fa-meh-o"></i>推荐书籍 ~ </h3>
+                                <ul>
+                                    <li>
+                                        <span class="layui-badge-dot layui-bg-gray"></span>
+                                        <p></p>
+                                        <p>平凡的世界！</p>
+                                        <small>2019年05月11号</small>
+                                        <p></p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 标签 -->
+                            <div class="tags">
+                                <h3 class="title-sidebar"><i class="fa fa-tags"></i>今日推荐书籍
+                                    <a href="home3.html?typeId=18" style="float:right ;">
+                                        <font size="1">>>更多</font>
+                                    </a>
+                                </h3>
+                                <div>
+                                </div>
+                            </div>
+                            <div class="about-us">
+                                <h3 class="title-sidebar"><i class="fa fa-bullhorn"></i>欢迎大佬光临</h3>
+                                <div class="ad-rs">
+                                    <p>
+                                        <a href="/" target="_blank" rel="nofollow noopener noreferrer">
+                                            <img class="alignnone size-medium wp-image-252" src="../../static/images/huanying.gif" alt="" width="170" height="250" data-bd-imgshare-binded="1" />
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 主体结束 -->
+        </div>
+        <!-- 引用js -->
+        <script src="../../static/layui-v2.4.5/layui/layui.js"></script>
+        <script src="../../static/css/main.js"></script>
+        <!-- end -->
+        <div class="footer layui-fluid">
+            <div class="layui-row layui-fluid">
+                <div class="layui-col-md9">
+	   	<span class="layui-breadcrumb" lay-separator="|" style="visibility: visible;">
+	   		<a href="home3.html">推荐书籍</a>
+	   		<span lay-separator="">|</span>
+	   		<a href="home3.html">今日推荐</a>
+	   		<span lay-separator="">|</span>
+	   		<br/>
+        </span>
+                </div>
+                <div class="layui-col-md3 t-r">
+                    <a href="javascript:" target="_blank" rel="nofollow" class="wxbusinesscard" title="QQ群二维码"><i
+                            class="fa fa-comments-o fa-fw"></i>
+                        <div class="wxbusinesscard_box">
+                            <img src="../../static/images/beijing.jpg" alt="扫一扫" data-bd-imgshare-binded="1"/>
+                        </div>
+                    </a>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=1356333699&site=qq&menu=yes" rel="nofollow"
+                       target="_blank"><i class="fa fa-qq fa-fw"></i></a>
+                    <a href="" rel="nofollow"><i class="fa fa-envelope fa-fw"></i></a>
+                </div>
+                <div class="layui-col-md12 t-copy">
+	  		<span class="layui-breadcrumb" lay-separator="/" style="visibility: visible;">
+	  			<span>
+	  				<i class="fa fa-copyright"></i> 2019
+	  				<a class="layui-" href="" target="_blank">图书推荐</a>
+	  				<span lay-separator="">/</span>
+	  			</span>
+	  		<a href="http://www.baidu.com" target="_blank" rel="nofollow">百度</a>
+	  		</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
